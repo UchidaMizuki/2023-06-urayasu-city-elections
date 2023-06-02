@@ -34,6 +34,11 @@ list(
            regexp = "shp$"),
     format = "file"
   ),
+  tar_target(
+    boundary,
+    get_boundary(file_boundary = file_boundary,
+                 regex_kansuji = regex_kansuji)
+  ),
   
   # 投票区 ---------------------------------------------------------------------
   tar_target(
@@ -42,8 +47,13 @@ list(
     format = "file"
   ),
   tar_target(
-    precinct, 
-    get_precinct(file_precinct = file_precinct,
-                 regex_kansuji = regex_kansuji)
+    precinct_chome, 
+    get_precinct_chome(file_precinct = file_precinct,
+                       boundary = boundary,
+                       regex_kansuji = regex_kansuji)
+  ),
+  tar_target(
+    precinct,
+    get_precinct(precinct_chome = precinct_chome)
   )
 )
